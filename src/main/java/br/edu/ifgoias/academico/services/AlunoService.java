@@ -13,8 +13,12 @@ import br.edu.ifgoias.academico.repositories.AlunoRepository;
 @Service
 public class AlunoService {
 
-	@Autowired
-	private AlunoRepository alunoRep;
+    private final AlunoRepository alunoRep;
+
+    @Autowired
+    public AlunoService(AlunoRepository alunoRep) {
+        this.alunoRep = alunoRep;
+    }
 
 	public List<Aluno> findAll() {
 		return alunoRep.findAll();
