@@ -5,6 +5,7 @@ import java.sql.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
+import java.util.logging.Logger;
 
 import br.edu.ifgoias.academico.entities.Aluno;
 import br.edu.ifgoias.academico.repositories.AlunoRepository;
@@ -15,6 +16,7 @@ public class Config implements CommandLineRunner {
 
     private final CursoRepository cursoRep;
     private final AlunoRepository alunoRep;
+    private static final Logger logger = Logger.getLogger(Config.class.getName());
 
     @Autowired
     public Config(CursoRepository cursoRep, AlunoRepository alunoRep) {
@@ -25,7 +27,7 @@ public class Config implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-				System.out.println("Qtde Cursos: " + cursoRep.count());
+				 logger.info("Qtde Cursos: " + cursoRep.count());
 
 				Aluno a1 = new Aluno(null, "Caroline", "Feminino", Date.valueOf("2000-04-24"));
 
