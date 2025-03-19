@@ -2,8 +2,6 @@ package br.edu.ifgoias.academico.config;
 
 import java.sql.Date;
 
-import java.util.function.Supplier;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
