@@ -27,7 +27,7 @@ public class Aluno implements Serializable {
 	@Column(name = "sexo", nullable = false)
 	private String sexo;
 
-	@Column(name = "dt_nasc", nullable = false)
+	@Column(name = "dtNasc", nullable = false)
 	private Date dtNasc;
 
 	@ManyToOne
@@ -42,7 +42,7 @@ public class Aluno implements Serializable {
 		this.idaluno = id;
 		this.nome = nome;
 		this.sexo = sexo;
-		this.dt_nasc = date;
+		this.dtNasc = date;
 	}
 
 	public Integer getIdaluno() {
@@ -87,7 +87,7 @@ public class Aluno implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(dt_nasc, idaluno, nome, sexo);
+		return Objects.hash(dtNasc, idaluno, nome, sexo);
 	}
 
 	@Override
@@ -99,13 +99,13 @@ public class Aluno implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Aluno other = (Aluno) obj;
-		return Objects.equals(dt_nasc, other.dt_nasc) && Objects.equals(idaluno, other.idaluno)
+		return Objects.equals(dtNasc, other.dt_nasc) && Objects.equals(idaluno, other.idaluno)
 				&& Objects.equals(nome, other.nome) && Objects.equals(sexo, other.sexo);
 	}
 
 	@Override
 	public String toString() {
-		return "Aluno [idaluno=" + idaluno + ", nome=" + nome + ", sexo=" + sexo + ", dt_nasc=" + dt_nasc + "]";
+		return "Aluno [idaluno=" + idaluno + ", nome=" + nome + ", sexo=" + sexo + ", dtNasc=" + dtNasc + "]";
 	}
 
 }
