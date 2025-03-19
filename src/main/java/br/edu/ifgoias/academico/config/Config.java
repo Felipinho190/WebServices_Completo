@@ -2,6 +2,8 @@ package br.edu.ifgoias.academico.config;
 
 import java.sql.Date;
 
+import java.util.function.Supplier;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -27,8 +29,7 @@ public class Config implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-				 logger.info("Qtde Cursos: " + cursoRep.count());
-
+				logger.info(() -> "Qtde Cursos: " + cursoRep.count());
 				Aluno a1 = new Aluno(null, "Caroline", "Feminino", Date.valueOf("2000-04-24"));
 
 				Aluno a2 = new Aluno(null, "Isabelle", "Feminino", Date.valueOf("2000-12-28"));
