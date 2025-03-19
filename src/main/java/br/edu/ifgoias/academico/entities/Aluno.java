@@ -28,7 +28,7 @@ public class Aluno implements Serializable {
 	private String sexo;
 
 	@Column(name = "dt_nasc", nullable = false)
-	private Date dt_nasc;
+	private Date dtNasc;
 
 	@ManyToOne
 	@JoinColumn(name = "idcurso")
