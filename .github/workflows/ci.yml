@@ -1,0 +1,40 @@
+name: CI Pipeline with Tests and Coverage
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+     # Fazer checkout do código
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Configurar JDK
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17' # Altere para a versão do Java usada no seu projeto
+          distribution: 'temurin'
+
+      # Instalar dependências do Maven
+      - name: Install dependencies
+        run: mvn clean install
+
+      # Executar testes e gerar relatório de cobertura
+      - name: Run tests and generate coverage report
+        run: mvn verify
+
+      # Enviar relatório de cobertura para o SonarQube
+      - name: SonarQube Analysis
+        uses: sonarsource/sonarqube-scan-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
