@@ -70,7 +70,7 @@ public class Aluno implements Serializable {
 	}
 
 	public Date getDtNasc() {
-		return dt_nasc;
+		return dtNasc;
 	}
 
 	public void setDt_nasc(Date dt_nasc) {
