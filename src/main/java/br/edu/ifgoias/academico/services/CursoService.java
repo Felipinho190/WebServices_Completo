@@ -36,10 +36,10 @@ public class CursoService {
 		cursoRep.deleteById(id);
 	}
 	
-	public Curso update (Integer id, Curso obj_alterado) {
+	public Curso update (Integer id, Curso objAlterado) {
 		return cursoRep.findById(id).map(
 											cursoDB -> {
-													cursoDB.setNomecurso( obj_alterado.getNomecurso() );
+													cursoDB.setNomecurso( objAlterado.getNomecurso() );
 													return cursoRep.save(cursoDB);
 											}
 									)
