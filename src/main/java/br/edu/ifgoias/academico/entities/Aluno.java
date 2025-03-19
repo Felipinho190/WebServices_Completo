@@ -69,7 +69,7 @@ public class Aluno implements Serializable {
 		this.sexo = sexo;
 	}
 
-	public Date getDt_nasc() {
+	public Date getDtNasc() {
 		return dt_nasc;
 	}
 
