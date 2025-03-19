@@ -38,9 +38,9 @@ public class AlunoService {
 
 	public Aluno update(Integer id, Aluno objAlterado) {
 		return alunoRep.findById(id).map(alunoDB -> {
-			alunoDB.setNome(obj_alterado.getNome());
-			alunoDB.setSexo(obj_alterado.getSexo());
-			alunoDB.setDt_nasc(obj_alterado.getDt_nasc());
+			alunoDB.setNome(objAlterado.getNome());
+			alunoDB.setSexo(objAlterado.getSexo());
+			alunoDB.setDtNasc(objAlterado.getDtNasc());
 			return alunoRep.save(alunoDB);
 		}).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 	}
