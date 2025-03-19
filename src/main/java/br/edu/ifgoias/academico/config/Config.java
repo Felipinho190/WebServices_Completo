@@ -36,7 +36,7 @@ public class Config implements CommandLineRunner {
 
 				alunoRep.save(a2);
 
-				System.out.println("Qtde Alunos: " + alunoRep.count());
+				logger.info("Qtde Alunos: " + alunoRep.count());
 	}
 
 }
