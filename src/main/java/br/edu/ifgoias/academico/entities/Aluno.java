@@ -99,7 +99,7 @@ public class Aluno implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Aluno other = (Aluno) obj;
-		return Objects.equals(dtNasc, other.dt_nasc) && Objects.equals(idaluno, other.idaluno)
+		return Objects.equals(dtNasc, other.dtNasc) && Objects.equals(idaluno, other.idaluno)
 				&& Objects.equals(nome, other.nome) && Objects.equals(sexo, other.sexo);
 	}
 
