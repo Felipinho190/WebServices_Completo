@@ -36,10 +36,6 @@ public class Config implements CommandLineRunner {
 
 				alunoRep.save(a2);
 
-				// alunoRep.deleteById(1);
-
-				// alunoRep.deleteById(2);
-
 				System.out.println("Qtde Alunos: " + alunoRep.count());
 	}
 
