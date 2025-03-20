@@ -8,9 +8,9 @@ on:
     branches:
       - main
 
-jobs:  # Linha 11: "jobs" deve estar no nível raiz
-  build:  # Linha 12: "build" deve estar indentado sob "jobs"
-    runs-on: ubuntu-latest  # Linha 13: "runs-on" deve estar indentado sob "build"
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
@@ -36,7 +36,7 @@ jobs:  # Linha 11: "jobs" deve estar no nível raiz
         run: mvn jacoco:report
 
       - name: Upload coverage report as artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: coverage-report
           path: target/site/jacoco
