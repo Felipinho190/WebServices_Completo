@@ -32,7 +32,10 @@ jobs:
     - name: Build and test with Maven
       run: mvn clean test
 
-    - name: Upload coverage report
+    - name: Generate JaCoCo coverage report
+      run: mvn jacoco:report
+
+    - name: Upload coverage report as artifact
       uses: actions/upload-artifact@v2
       with:
         name: coverage-report
