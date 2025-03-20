@@ -4,12 +4,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <!-- Definição do Parent do Spring Boot -->
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.1.0</version>
-        <relativePath/> <!-- Remove a necessidade de buscar o parent localmente -->
-    </parent>
+         <parent>
+             <groupId>org.springframework.boot</groupId>
+             <artifactId>spring-boot-starter-parent</artifactId>
+             <version>3.2.0</version> <!-- Verifique a versão correta -->
+             <relativePath/> 
+         </parent>
 
     <!-- Informações do projeto -->
     <groupId>br.edu.ifgoias</groupId>
@@ -23,6 +23,10 @@
         <java.version>17</java.version>
         <spring-boot.version>3.1.0</spring-boot.version>
     </properties>
+    <properties>
+         <spring-boot.version>3.2.0</spring-boot.version>
+    </properties>
+
 
     <!-- Dependências do projeto -->
     <dependencies>
