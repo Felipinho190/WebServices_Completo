@@ -14,11 +14,7 @@
 	<name>academico</name>
 	<description>Sistema WebService RestFull</description>
 	<properties>
-		<java.version>11</java.version> <!-- Alterado para Java 11 -->
-		<sonar.organization>Felipinho190</sonar.organization>
-   		<sonar.projectKey>Felipinho190_WebServices_Completo</sonar.projectKey>
-    		<sonar.host.url>https://sonarcloud.io</sonar.host.url> <!-- Mantenha apenas um sonar.host.url -->
-    		<sonar.login>3aac0ff7e41f7299c2d17641d3fc69400f156ddd</sonar.login>
+    		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
