@@ -8,35 +8,35 @@ on:
     branches:
       - main
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+jobs:  # Linha 11: "jobs" deve estar no nível raiz
+  build:  # Linha 12: "build" deve estar indentado sob "jobs"
+    runs-on: ubuntu-latest  # Linha 13: "runs-on" deve estar indentado sob "build"
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Set up JDK
-      uses: actions/setup-java@v2
-      with:
-        java-version: '11'
-        distribution: 'adopt'
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
 
-  - name: Cache Maven packages
-    uses: actions/cache@v3
-    with:
-      path: ~/.m2
-      key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-      restore-keys: ${{ runner.os }}-m2-
+      - name: Cache Maven packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2-
 
-    - name: Build and test with Maven
-      run: mvn clean test
+      - name: Build and test with Maven
+        run: mvn clean test
 
-    - name: Generate JaCoCo coverage report
-      run: mvn jacoco:report
+      - name: Generate JaCoCo coverage report
+        run: mvn jacoco:report
 
-    - name: Upload coverage report as artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: coverage-report
-        path: target/site/jacoco
+      - name: Upload coverage report as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage-report
+          path: target/site/jacoco
