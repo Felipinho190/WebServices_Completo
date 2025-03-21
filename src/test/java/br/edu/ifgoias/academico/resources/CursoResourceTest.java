@@ -159,4 +159,48 @@ class CursoResourceTest {
 
         verify(servico, times(1)).update(999, cursoAlterado);
     }
+    // Teste para GET /cursos/{id} - Curso Inexistente
+    @Test
+    void testFindById_NonExistingId() throws Exception {
+        // Arrange
+        when(servico.findById(999)).thenThrow(new RuntimeException("Curso não encontrado"));
+    
+        // Act & Assert
+        mockMvc.perform(get("/cursos/999"))
+                .andExpect(status().isNotFound()) // Verifica se o status é 404
+                .andExpect(content().string("Curso não encontrado")); // Verifica a mensagem de erro
+    
+        verify(servico, times(1)).findById(999);
+    }
+    
+    // Teste para DELETE /cursos/{id} - Curso Inexistente
+    @Test
+    void testDelete_NonExistingId() throws Exception {
+        // Arrange
+        doThrow(new RuntimeException("Curso não encontrado")).when(servico).delete(999);
+    
+        // Act & Assert
+        mockMvc.perform(delete("/cursos/999"))
+                .andExpect(status().isNotFound()) // Verifica se o status é 404
+                .andExpect(content().string("Curso não encontrado")); // Verifica a mensagem de erro
+    
+        verify(servico, times(1)).delete(999);
+    }
+
+    // Teste para PUT /cursos/{id} - Curso Inexistente
+    @Test
+    void testUpdate_NonExistingId() throws Exception {
+        // Arrange
+        Curso cursoAlterado = new Curso(999, "Curso Inexistente");
+        when(servico.update(999, cursoAlterado)).thenThrow(new RuntimeException("Curso não encontrado"));
+    
+        // Act & Assert
+        mockMvc.perform(put("/cursos/999")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(cursoAlterado)))
+                .andExpect(status().isNotFound()) // Verifica se o status é 404
+                .andExpect(content().string("Curso não encontrado")); // Verifica a mensagem de erro
+    
+        verify(servico, times(1)).update(999, cursoAlterado);
+    }
 }
