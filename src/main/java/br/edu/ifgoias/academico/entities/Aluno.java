@@ -55,6 +55,11 @@ public class Aluno implements Serializable {
         this.idaluno = idaluno;
     }
 
+    // Adiciona o método getId() para compatibilidade com os testes
+    public Integer getId() {
+        return this.getIdaluno();
+    }
+
     public String getNome() {
         return nome;
     }
