@@ -15,97 +15,100 @@ import jakarta.persistence.ManyToOne;
 @Entity
 public class Aluno implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idaluno;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer idaluno;
 
-	@Column(name = "nome", nullable = false)
-	private String nome;
+    @Column(name = "nome", nullable = false)
+    private String nome;
 
-	@Column(name = "sexo", nullable = false)
-	private String sexo;
+    @Column(name = "sexo", nullable = false)
+    private String sexo;
 
-	@Column(name = "dtNasc", nullable = false)
-	private Date dtNasc;
+    @Column(name = "dtNasc", nullable = false)
+    private Date dtNasc;
 
-	@ManyToOne
-	@JoinColumn(name = "idcurso")
-	private Curso curso;
+    @ManyToOne
+    @JoinColumn(name = "idcurso")
+    private Curso curso;
 
-	public Aluno() {
+    public Aluno() {
+    }
 
-	}
+    public Aluno(Integer id, String nome, String sexo, Date date) {
+        this.idaluno = id;
+        this.nome = nome;
+        this.sexo = sexo;
+        this.dtNasc = date;
+    }
 
-	public Aluno(Integer id, String nome, String sexo, Date date) {
-		this.idaluno = id;
-		this.nome = nome;
-		this.sexo = sexo;
-		this.dtNasc = date;
-	}
+    public Integer getIdaluno() {
+        return idaluno;
+    }
 
-	public Integer getId() {
-	    return this.getIdaluno();
-	}
+    public void setIdaluno(Integer idaluno) {
+        this.idaluno = idaluno;
+    }
 
-	public void setIdaluno(Integer idaluno) {
-		this.idaluno = idaluno;
-	}
+    // Adicione este método para compatibilidade com o teste
+    public Integer getId() {
+        return this.getIdaluno();
+    }
 
-	public String getNome() {
-		return nome;
-	}
+    public String getNome() {
+        return nome;
+    }
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-	public String getSexo() {
-		return sexo;
-	}
+    public String getSexo() {
+        return sexo;
+    }
 
-	public void setSexo(String sexo) {
-		this.sexo = sexo;
-	}
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
 
-	public Date getDtNasc() {
-		return dtNasc;
-	}
+    public Date getDtNasc() {
+        return dtNasc;
+    }
 
-	public void setDtNasc(Date dtNasc) {
-		this.dtNasc = dtNasc;
-	}
+    public void setDtNasc(Date dtNasc) {
+        this.dtNasc = dtNasc;
+    }
 
-	public Curso getCurso() {
-		return curso;
-	}
+    public Curso getCurso() {
+        return curso;
+    }
 
-	public void setCurso(Curso c) {
-		this.curso = c;
-	}
+    public void setCurso(Curso c) {
+        this.curso = c;
+    }
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(dtNasc, idaluno, nome, sexo);
-	}
+    @Override
+    public int hashCode() {
+        return Objects.hash(dtNasc, idaluno, nome, sexo);
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Aluno other = (Aluno) obj;
-		return Objects.equals(dtNasc, other.dtNasc) && Objects.equals(idaluno, other.idaluno)
-				&& Objects.equals(nome, other.nome) && Objects.equals(sexo, other.sexo);
-	}
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Aluno other = (Aluno) obj;
+        return Objects.equals(dtNasc, other.dtNasc) && Objects.equals(idaluno, other.idaluno)
+                && Objects.equals(nome, other.nome) && Objects.equals(sexo, other.sexo);
+    }
 
-	@Override
-	public String toString() {
-		return "Aluno [idaluno=" + idaluno + ", nome=" + nome + ", sexo=" + sexo + ", dtNasc=" + dtNasc + "]";
-	}
-
+    @Override
+    public String toString() {
+        return "Aluno [idaluno=" + idaluno + ", nome=" + nome + ", sexo=" + sexo + ", dtNasc=" + dtNasc + "]";
+    }
 }
