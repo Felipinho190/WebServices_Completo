@@ -26,7 +26,7 @@ jobs:
       run: mvn clean test
 
     - name: Upload JaCoCo report as artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v2
       with:
         name: jacoco-report
         path: target/site/jacoco/
