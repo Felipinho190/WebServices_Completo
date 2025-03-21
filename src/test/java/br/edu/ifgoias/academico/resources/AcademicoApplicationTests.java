@@ -1,3 +1,4 @@
+import org.springframework.http.HttpStatus;
 package br.edu.ifgoias.academico;
 
 import org.junit.jupiter.api.Test;
