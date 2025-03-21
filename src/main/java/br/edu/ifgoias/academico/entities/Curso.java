@@ -59,6 +59,10 @@ public class Curso implements Serializable {
         return alunos;
     }
 
+    public void setAlunos(List<Aluno> alunos) {
+        this.alunos = alunos;
+    }
+
     // Método para adicionar um aluno ao curso
     public void addAluno(Aluno aluno) {
         if (!this.alunos.contains(aluno)) {
