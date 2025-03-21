@@ -89,7 +89,7 @@ class AlunoServiceTest {
         ResponseStatusException exception = assertThrows(ResponseStatusException.class, () -> {
             alunoService.findById(999);
         });
-        assertEquals(HttpStatus.NOT_FOUND, exception.getStatus());
+        assertEquals(HttpStatus.NOT_FOUND, exception.getStatusCode()); // Correção aqui
         verify(alunoRep, times(1)).findById(999);
     }
 
@@ -162,7 +162,7 @@ class AlunoServiceTest {
         ResponseStatusException exception = assertThrows(ResponseStatusException.class, () -> {
             alunoService.update(999, new Aluno());
         });
-        assertEquals(HttpStatus.NOT_FOUND, exception.getStatus());
+        assertEquals(HttpStatus.NOT_FOUND, exception.getStatusCode()); // Correção aqui
         verify(alunoRep, times(1)).findById(999);
     }
 }
