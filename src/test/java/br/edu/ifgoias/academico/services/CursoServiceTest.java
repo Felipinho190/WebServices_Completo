@@ -104,8 +104,8 @@ class CursoServiceTest {
         Curso result = cursoService.insert(curso);
 
         // Assert
-        assertNotNull(result.getId());
-        assertEquals(1, result.getId());
+        assertNotNull(result.getIdcurso()); // Correção aqui
+        assertEquals(1, result.getIdcurso()); // Correção aqui
         verify(cursoRep, times(1)).save(curso);
     }
 
