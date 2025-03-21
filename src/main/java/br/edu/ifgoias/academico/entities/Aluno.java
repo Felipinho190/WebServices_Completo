@@ -12,6 +12,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
 @Entity
 public class Aluno implements Serializable {
 
@@ -50,11 +53,6 @@ public class Aluno implements Serializable {
 
     public void setIdaluno(Integer idaluno) {
         this.idaluno = idaluno;
-    }
-
-    // Adicione este método para compatibilidade com o teste
-    public Integer getId() {
-        return this.getIdaluno();
     }
 
     public String getNome() {
@@ -110,5 +108,18 @@ public class Aluno implements Serializable {
     @Override
     public String toString() {
         return "Aluno [idaluno=" + idaluno + ", nome=" + nome + ", sexo=" + sexo + ", dtNasc=" + dtNasc + "]";
+    }
+
+    // Novo método para determinar o status do aluno
+    public String getStatus() {
+        LocalDate birthDate = new java.sql.Date(dtNasc.getTime()).toLocalDate();
+        LocalDate today = LocalDate.now();
+        long age = ChronoUnit.YEARS.between(birthDate, today);
+
+        if (age >= 18) {
+            return "Adulto";
+        } else {
+            return "Menor de idade";
+        }
     }
 }
