@@ -3,8 +3,6 @@ package br.edu.ifgoias.academico.resources;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import java.sql.Date;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,7 +56,7 @@ class AlunoResourceIntegrationTest {
                 {
                     "nome": "João Silva",
                     "sexo": "Masculino",
-                    "dt_nascimento": "2000-01-01"
+                    "dtNasc": "2000-01-01"
                 }
                 """;
         String response = mockMvc.perform(post("/alunos")
@@ -73,7 +71,7 @@ class AlunoResourceIntegrationTest {
                 .andExpect(jsonPath("$.idaluno").value(id))
                 .andExpect(jsonPath("$.nome").value("João Silva"))
                 .andExpect(jsonPath("$.sexo").value("Masculino"))
-                .andExpect(jsonPath("$.dt_nascimento").value("2000-01-01"));
+                .andExpect(jsonPath("$.dtNasc").value("2000-01-01"));
     }
 
     // Teste para POST /alunos
@@ -83,7 +81,7 @@ class AlunoResourceIntegrationTest {
                 {
                     "nome": "Maria Oliveira",
                     "sexo": "Feminino",
-                    "dt_nascimento": "1995-05-15"
+                    "dtNasc": "1995-05-15"
                 }
                 """;
 
@@ -94,7 +92,7 @@ class AlunoResourceIntegrationTest {
                 .andExpect(jsonPath("$.idaluno").exists())
                 .andExpect(jsonPath("$.nome").value("Maria Oliveira"))
                 .andExpect(jsonPath("$.sexo").value("Feminino"))
-                .andExpect(jsonPath("$.dt_nascimento").value("1995-05-15"));
+                .andExpect(jsonPath("$.dtNasc").value("1995-05-15"));
     }
 
     // Teste para DELETE /alunos/{id}
@@ -105,7 +103,7 @@ class AlunoResourceIntegrationTest {
                 {
                     "nome": "Carlos Souza",
                     "sexo": "Masculino",
-                    "dt_nascimento": "1985-12-10"
+                    "dtNasc": "1985-12-10"
                 }
                 """;
         String response = mockMvc.perform(post("/alunos")
@@ -127,7 +125,7 @@ class AlunoResourceIntegrationTest {
                 {
                     "nome": "Ana Pereira",
                     "sexo": "Feminino",
-                    "dt_nascimento": "1990-07-20"
+                    "dtNasc": "1990-07-20"
                 }
                 """;
         String response = mockMvc.perform(post("/alunos")
@@ -141,7 +139,7 @@ class AlunoResourceIntegrationTest {
                 {
                     "nome": "Ana Pereira Atualizada",
                     "sexo": "Feminino",
-                    "dt_nascimento": "1990-07-20"
+                    "dtNasc": "1990-07-20"
                 }
                 """;
 
