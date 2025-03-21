@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import br.edu.ifgoias.academico.entities.Curso;
 import br.edu.ifgoias.academico.services.CursoService;
@@ -23,7 +24,7 @@ import br.edu.ifgoias.academico.services.CursoService;
 @CrossOrigin("http://localhost:4200")
 @RequestMapping(value = "/cursos")
 public class CursoResource {
-	
+
     private final CursoService servico;
 
     @Autowired
@@ -75,4 +76,8 @@ public class CursoResource {
 		return ResponseEntity.ok().body(c);
 	}
 
+	    @ExceptionHandler(RuntimeException.class)
+	    public ResponseEntity<String> handleRuntimeException(RuntimeException ex) {
+	        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+	    }
 }
