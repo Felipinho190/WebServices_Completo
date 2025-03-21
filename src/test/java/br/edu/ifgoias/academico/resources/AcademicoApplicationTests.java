@@ -1,5 +1,4 @@
-import org.springframework.http.HttpStatus;
-package br.edu.ifgoias.academico;
+package br.edu.ifgoias.academico; // Package deve vir primeiro
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
