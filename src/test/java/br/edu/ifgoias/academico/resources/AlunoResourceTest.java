@@ -33,8 +33,8 @@ class AlunoResourceTest {
     @Test
     void testFindAll() {
         // Arrange
-        Aluno aluno1 = new Aluno(1, "João Silva", "123456789", new Date());
-        Aluno aluno2 = new Aluno(2, "Maria Oliveira", "987654321", new Date());
+        Aluno aluno1 = new Aluno(1, "João Silva", "Masculino", new Date());
+        Aluno aluno2 = new Aluno(2, "Maria Oliveira", "Feminino", new Date());
         List<Aluno> alunos = Arrays.asList(aluno1, aluno2);
 
         when(servico.findAll()).thenReturn(alunos);
@@ -52,7 +52,7 @@ class AlunoResourceTest {
     @Test
     void testFindById() {
         // Arrange
-        Aluno aluno = new Aluno(1, "João Silva", "123456789", new Date());
+        Aluno aluno = new Aluno(1, "João Silva", "Masculino", new Date());
         when(servico.findById(1)).thenReturn(aluno);
 
         // Act
@@ -67,8 +67,8 @@ class AlunoResourceTest {
     @Test
     void testInsert() {
         // Arrange
-        Aluno aluno = new Aluno(null, "João Silva", "123456789", new Date());
-        Aluno alunoSalvo = new Aluno(1, "João Silva", "123456789", new Date());
+        Aluno aluno = new Aluno(null, "João Silva", "Masculino", new Date());
+        Aluno alunoSalvo = new Aluno(1, "João Silva", "Masculino", new Date());
         when(servico.insert(aluno)).thenReturn(alunoSalvo);
 
         // Act
@@ -76,7 +76,7 @@ class AlunoResourceTest {
 
         // Assert
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(1, response.getBody().getId());
+        assertEquals(1, response.getBody().getId()); // Usa o método getId()
         assertEquals("João Silva", response.getBody().getNome());
         verify(servico, times(1)).insert(aluno);
     }
@@ -96,7 +96,7 @@ class AlunoResourceTest {
     @Test
     void testUpdate() {
         // Arrange
-        Aluno alunoAtualizado = new Aluno(1, "João Silva Atualizado", "123456789", new Date());
+        Aluno alunoAtualizado = new Aluno(1, "João Silva Atualizado", "Masculino", new Date());
         when(servico.update(1, alunoAtualizado)).thenReturn(alunoAtualizado);
 
         // Act
