@@ -1,24 +1,23 @@
 package br.edu.ifgoias.academico.resources;
 
-import static org.mockito.Mockito.*;
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.util.Arrays;
-import java.util.List;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.http.ResponseEntity;
-
 import br.edu.ifgoias.academico.entities.Aluno;
 import br.edu.ifgoias.academico.services.AlunoService;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
-@ExtendWith(MockitoExtension.class)
-public class AlunoResourceTest {
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
+
+class AlunoResourceTest {
 
     @Mock
     private AlunoService servico;
@@ -26,89 +25,86 @@ public class AlunoResourceTest {
     @InjectMocks
     private AlunoResource alunoResource;
 
-    private Aluno aluno1;
-    private Aluno aluno2;
-
     @BeforeEach
-    public void setUp() {
-        // Configura alunos fictícios para os testes
-        aluno1 = new Aluno(1, "João", "Masculino");
-        aluno2 = new Aluno(2, "Maria", "Feminino");
+    void setUp() {
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test
-    public void testFindAll() {
+    void testFindAll() {
         // Arrange
+        Aluno aluno1 = new Aluno(1, "João Silva", "123456789", new Date());
+        Aluno aluno2 = new Aluno(2, "Maria Oliveira", "987654321", new Date());
         List<Aluno> alunos = Arrays.asList(aluno1, aluno2);
+
         when(servico.findAll()).thenReturn(alunos);
 
         // Act
         ResponseEntity<List<Aluno>> response = alunoResource.findAll();
 
         // Assert
-        assertNotNull(response);
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(2, response.getBody().size());
+        assertEquals("João Silva", response.getBody().get(0).getNome());
         verify(servico, times(1)).findAll();
     }
 
     @Test
-    public void testFindById() {
+    void testFindById() {
         // Arrange
-        Integer id = 1;
-        when(servico.findById(id)).thenReturn(aluno1);
+        Aluno aluno = new Aluno(1, "João Silva", "123456789", new Date());
+        when(servico.findById(1)).thenReturn(aluno);
 
         // Act
-        ResponseEntity<Aluno> response = alunoResource.findById(id);
+        ResponseEntity<Aluno> response = alunoResource.findById(1);
 
         // Assert
-        assertNotNull(response);
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals("João", response.getBody().getNome());
-        verify(servico, times(1)).findById(id);
+        assertEquals("João Silva", response.getBody().getNome());
+        verify(servico, times(1)).findById(1);
     }
 
     @Test
-    public void testInsert() {
+    void testInsert() {
         // Arrange
-        when(servico.insert(any(Aluno.class))).thenReturn(aluno1);
+        Aluno aluno = new Aluno(null, "João Silva", "123456789", new Date());
+        Aluno alunoSalvo = new Aluno(1, "João Silva", "123456789", new Date());
+        when(servico.insert(aluno)).thenReturn(alunoSalvo);
 
         // Act
-        ResponseEntity<Aluno> response = alunoResource.insert(aluno1);
+        ResponseEntity<Aluno> response = alunoResource.insert(aluno);
 
         // Assert
-        assertNotNull(response);
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals("João", response.getBody().getNome());
-        verify(servico, times(1)).insert(any(Aluno.class));
+        assertEquals(1, response.getBody().getId());
+        assertEquals("João Silva", response.getBody().getNome());
+        verify(servico, times(1)).insert(aluno);
     }
 
     @Test
-    public void testDelete() {
+    void testDelete() {
         // Arrange
-        Integer id = 1;
+        doNothing().when(servico).delete(1);
 
         // Act
-        alunoResource.delete(id);
+        alunoResource.delete(1);
 
         // Assert
-        verify(servico, times(1)).delete(id);
+        verify(servico, times(1)).delete(1);
     }
 
     @Test
-    public void testUpdate() {
+    void testUpdate() {
         // Arrange
-        Integer id = 1;
-        Aluno alunoAtualizado = new Aluno(1, "João Atualizado", "Masculino");
-        when(servico.update(eq(id), any(Aluno.class))).thenReturn(alunoAtualizado);
+        Aluno alunoAtualizado = new Aluno(1, "João Silva Atualizado", "123456789", new Date());
+        when(servico.update(1, alunoAtualizado)).thenReturn(alunoAtualizado);
 
         // Act
-        ResponseEntity<Aluno> response = alunoResource.update(id, aluno1);
+        ResponseEntity<Aluno> response = alunoResource.update(1, alunoAtualizado);
 
         // Assert
-        assertNotNull(response);
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals("João Atualizado", response.getBody().getNome());
-        verify(servico, times(1)).update(eq(id), any(Aluno.class));
+        assertEquals("João Silva Atualizado", response.getBody().getNome());
+        verify(servico, times(1)).update(1, alunoAtualizado);
     }
 }
