@@ -45,8 +45,8 @@ public class Aluno implements Serializable {
 		this.dtNasc = date;
 	}
 
-	public Integer getIdaluno() {
-		return idaluno;
+	public Integer getId() {
+	    return this.getIdaluno();
 	}
 
 	public void setIdaluno(Integer idaluno) {
